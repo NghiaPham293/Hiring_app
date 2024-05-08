@@ -1,8 +1,9 @@
 import { Button, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
-
+import { useNavigation } from '@react-navigation/native';
 
 const Login = () => {
+    const navigation = useNavigation();
     return (
         <View style={{ flex: 1 }}>
             <View style={styles.viewContainer}>
@@ -38,7 +39,9 @@ const Login = () => {
                     <Text style={{ color: '#005987' }}>Quên mật khẩu</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.viewLogin}>
+                <TouchableOpacity onPress={() =>
+                    navigation.navigate('Manage')}
+                    style={styles.viewLogin}>
                     <Text style={{ color: '#FFF', fontSize: 14, fontWeight: '700' }}>Đăng nhập</Text>
                 </TouchableOpacity>
 
