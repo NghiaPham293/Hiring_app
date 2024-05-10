@@ -62,18 +62,6 @@ const Login = () => {
                     <Text style={{ color: '#FFF', fontSize: 14, fontWeight: '700' }}>Đăng nhập</Text>
                 </TouchableOpacity>
 
-                <View style={{ flexDirection: 'row', marginTop: 38, marginStart: 77 }}>
-                    <View>
-                        <Text style={{ marginStart: 24, color: '#646982', fontSize: 16, fontWeight: '400' }}>Chưa có tài khoản?</Text>
-                    </View>
-                    <TouchableOpacity >
-                        <Text style={{ marginStart: 24, color: '#005987', fontSize: 14, fontWeight: '700' }}>ĐĂNG KÝ</Text>
-                    </TouchableOpacity>
-                </View>
-                <View>
-                    <Text style={{ marginTop: 27, color: '#646982', fontSize: 16, fontWeight: '400', textAlign: 'center' }}>Hoặc</Text>
-                </View>
-
             </View>
         </View>
     )

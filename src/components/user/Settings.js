@@ -21,12 +21,8 @@ const CalendarScreen = () => {
 
             <View style={styles.viewBodyContainer}>
                 <Text style={styles.viewTextHome}>HOME</Text>
-               
- 
-            
+         
             </View>
-
-
         </ScrollView>
     )
 };
