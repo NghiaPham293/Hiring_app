@@ -2,11 +2,12 @@ import { Button, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacit
 import React, { useState } from 'react';
 
 
-const ManageEmployee = () => {
+const ManageEmployee = ({navigation}) => {
     return (
         <ScrollView >
             <View style={styles.viewHeader}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={()=>
+                    navigation.goBack()}>
                     <Image style={{ marginStart: 20, marginTop: 25, }} source={require("../../components/image/menu.png")}></Image>
                 </TouchableOpacity>
                 <TouchableOpacity>
@@ -93,7 +94,7 @@ const styles = StyleSheet.create({
     viewTextHome: {
         color: "#232323",
         fontSize: 24,
-        fontWeight: '600',
+        fontWeight: '800',
         marginStart: 24,
         marginTop: 24,
 

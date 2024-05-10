@@ -1,15 +1,16 @@
 import { Button, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, Modal } from 'react-native';
 import React, { useState } from 'react';
 import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
-import { LocaleConfig } from 'react-native-calendars';
-import { Colors } from 'react-native/Libraries/NewAppScreen';
+import { useNavigation } from '@react-navigation/native';
 
 
 const CalendarScreen = () => {
+    const navigation = useNavigation();
     return (
         <ScrollView >
             <View style={styles.viewHeader}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() =>
+                    navigation.goBack()}>
                     <Image style={{ marginStart: 20, marginTop: 25, }} source={require("../../components/image/menu.png")}></Image>
                 </TouchableOpacity>
                 <TouchableOpacity>
@@ -23,18 +24,22 @@ const CalendarScreen = () => {
             </View>
             <View style={styles.viewBodyContainer}>
                 <Text style={styles.viewTextHome}>Timekeeping</Text>
-                <View>
-                        <Calendar style={{borderRadius: 10, elevation: 4, margin: 20}}
-                        onDayPress={date =>{
+                <View style={styles.viewCalendar}>
+                    <Calendar style={{ borderRadius: 10, elevation: 9, margin: 20 }}
+                        onDayPress={date => {
                             console.log(date)
                         }}
-                       />                    
+                    />
                 </View>
-                <TouchableOpacity style={styles.viewApply}>
-                    <Text style={{ color: '#FFF', fontSize: 16, fontWeight: '700' }}>Hoàn tất</Text>
+                <TouchableOpacity onPress={() =>
+                    navigation.navigate('Home')}
+                    style={styles.viewApply}>
+                    <Text style={{ color: '#FFF', fontSize: 16, fontWeight: '700' }}>Apply</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.viewCancel}>
-                    <Text style={{ color: 'black', fontSize: 16, fontWeight: '700' }}>Hủy</Text>
+                <TouchableOpacity onPress={() =>
+                    navigation.navigate('Manage')}
+                    style={styles.viewCancel}>
+                    <Text style={{ color: 'black', fontSize: 16, fontWeight: '700' }}>Cancel</Text>
                 </TouchableOpacity>
             </View>
         </ScrollView>
@@ -44,7 +49,10 @@ const CalendarScreen = () => {
 export default CalendarScreen;
 
 const styles = StyleSheet.create({
-    viewCancel:{
+    viewCalendar: {
+        marginTop: 30
+    },
+    viewCancel: {
         marginStart: 45,
         marginTop: 20,
         width: "80%",
@@ -54,11 +62,11 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: 'white',
         justifyContent: 'center',
-        borderWidth:1
+        borderWidth: 1
     },
     viewApply: {
         marginStart: 45,
-        marginTop: 31,
+        marginTop: 50,
         width: "80%",
         height: 62,
         borderRadius: 12,
@@ -71,7 +79,7 @@ const styles = StyleSheet.create({
     viewTextHome: {
         color: "#232323",
         fontSize: 24,
-        fontWeight: '600',
+        fontWeight: '800',
         marginStart: 24,
         marginTop: 24,
 

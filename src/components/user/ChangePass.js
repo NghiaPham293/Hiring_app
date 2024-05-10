@@ -1,8 +1,9 @@
 import { Button, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
-
+import { useNavigation } from '@react-navigation/native';
 
 const ChangePass = () => {
+    const navigation = useNavigation();
     return (
         <View style={{ flex: 1 }}>
             <View style={styles.viewContainer}>
@@ -10,8 +11,10 @@ const ChangePass = () => {
                     <Text style={styles.viewText}>Create your new password</Text>
                     <Text style={styles.viewText2}>Make sure to create new strong password for your account!</Text>
                 </View>
-                <TouchableOpacity style={{marginStart: 20,marginTop: 20, }}>
-                    <Image style={{width: 34, height: 34,}} source={require("../../components/image/arrowleft.png")}></Image>
+                <TouchableOpacity onPress={() =>
+                    navigation.goBack()}
+                    style={{ marginStart: 20, marginTop: 20, }}>
+                    <Image style={{ width: 34, height: 34, }} source={require("../../components/image/arrowleft.png")}></Image>
                 </TouchableOpacity>
             </View>
             <View style={styles.viewBody}>

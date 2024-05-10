@@ -249,7 +249,7 @@ const styles = StyleSheet.create({
     viewTextHome: {
         color: "#232323",
         fontSize: 24,
-        fontWeight: '600',
+        fontWeight: '800',
         marginStart: 24,
         marginTop: 24,
 

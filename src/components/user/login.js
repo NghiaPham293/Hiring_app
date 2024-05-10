@@ -4,6 +4,13 @@ import { useNavigation } from '@react-navigation/native';
 
 const Login = () => {
     const navigation = useNavigation();
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [showPassword, setShowPassword] = useState(false);
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
     return (
         <View style={{ flex: 1 }}>
             <View style={styles.viewContainer}>
@@ -18,8 +25,8 @@ const Login = () => {
                 </View>
                 <View style={styles.viewTextInputPassword}>
                     <TextInput
-                        // value={email}
-                        // onChangeText={setEmail}
+                        value={email}
+                        onChangeText={(text) => setEmail(text)}
                         placeholder="   Email"
                         style={styles.viewTextInputEmail}
                     />
@@ -28,19 +35,29 @@ const Login = () => {
                     <Text style={styles.viewTextEmail}>MẬT KHẨU</Text>
                 </View>
                 <View style={styles.viewTextInputPassword}>
-                    <TextInput
-                        // value={email}
-                        // onChangeText={setEmail}
-                        placeholder="   Password"
-                        style={styles.viewTextInputEmail}
-                    />
+                    <View style={styles.viewTextInputPass}>
+                        <View>
+                            <TouchableOpacity onPress={togglePasswordVisibility}>
+                                <Image style={{ width: 25, height: 25, marginStart: 280, marginTop: 20 }} source={require("../../components/image/eye.png")}></Image>
+                            </TouchableOpacity>
+                        </View>
+                        <TextInput
+                            secureTextEntry={!showPassword}
+                            value={password}
+                            onChangeText={(text) => setPassword(text)}
+                            placeholder="   Password"
+                            style={{ marginTop: -40, }}
+                        />
+                    </View>
                 </View>
-                <TouchableOpacity style={styles.viewForgotPass}>
+                <TouchableOpacity onPress={() =>
+                    navigation.navigate('ChangePass')}
+                    style={styles.viewForgotPass}>
                     <Text style={{ color: '#005987' }}>Quên mật khẩu</Text>
                 </TouchableOpacity>
 
                 <TouchableOpacity onPress={() =>
-                    navigation.navigate('Manage')}
+                    navigation.navigate('Calendar')}
                     style={styles.viewLogin}>
                     <Text style={{ color: '#FFF', fontSize: 14, fontWeight: '700' }}>Đăng nhập</Text>
                 </TouchableOpacity>
@@ -93,6 +110,15 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         borderWidth: 1,
     },
+    viewTextInputPass: {
+        width: 327,
+        height: 62,
+        borderColor: '#9A9A9A',
+        alignSelf: 'center',
+        marginTop: 8,
+        borderRadius: 8,
+        borderWidth: 1,
+    },
     viewTextEmail: {
         fontSize: 13,
         fontWeight: '400',
@@ -102,7 +128,7 @@ const styles = StyleSheet.create({
     },
     viewText2: {
         fontSize: 16,
-        fontWeight: '400',
+        fontWeight: '600',
         color: '#9A9A9A',
         alignSelf: 'center',
         marginTop: 9,

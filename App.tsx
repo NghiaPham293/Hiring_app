@@ -36,6 +36,7 @@ function App() {
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Calendar" component={CalendarScreen} />
         <Stack.Screen name="Manage" component={ManageEmployee} />
+        <Stack.Screen name="ChangePass" component={ChangePass} />
       </Stack.Navigator>
     </NavigationContainer>
 
