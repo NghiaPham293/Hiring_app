@@ -7,15 +7,15 @@ const CalendarScreen = () => {
         <ScrollView >
             <View style={styles.viewHeader}>
                 <TouchableOpacity>
-                    <Image style={{ marginStart: 20, marginTop: 25, }} source={require("../../components/image/menu.png")}></Image>
+                    <Image style={{ marginStart: 20, marginTop: 25, }} source={require("../../image/menu.png")}></Image>
                 </TouchableOpacity>
                 <TouchableOpacity>
-                    <Image style={{ marginStart: 200, marginTop: 25, }} source={require("../../components/image/bell.png")}></Image>
+                    <Image style={{ marginStart: 200, marginTop: 25, }} source={require("../../image/bell.png")}></Image>
                 </TouchableOpacity>
                 <Text style={{ marginStart: 20, marginTop: 15, fontSize: 30 }}>|</Text>
-                <Image style={{ marginStart: 20, marginTop: 20, }} source={require("../../components/image/Picture.png")}></Image>
+                <Image style={{ marginStart: 20, marginTop: 20, }} source={require("../../image/Picture.png")}></Image>
                 <TouchableOpacity>
-                    <Image style={{ marginStart: 20, marginTop: 25, }} source={require("../../components/image/down.png")}></Image>
+                    <Image style={{ marginStart: 20, marginTop: 25, }} source={require("../../image/down.png")}></Image>
                 </TouchableOpacity>
             </View>
 

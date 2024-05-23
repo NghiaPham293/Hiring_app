@@ -8,15 +8,15 @@ const ManageEmployee = ({navigation}) => {
             <View style={styles.viewHeader}>
                 <TouchableOpacity onPress={()=>
                     navigation.goBack()}>
-                    <Image style={{ marginStart: 20, marginTop: 25, }} source={require("../../components/image/menu.png")}></Image>
+                    <Image style={{ marginStart: 20, marginTop: 25, }} source={require("../../image/menu.png")}></Image>
                 </TouchableOpacity>
                 <TouchableOpacity>
-                    <Image style={{ marginStart: 200, marginTop: 25, }} source={require("../../components/image/bell.png")}></Image>
+                    <Image style={{ marginStart: 200, marginTop: 25, }} source={require("../../image/bell.png")}></Image>
                 </TouchableOpacity>
                 <Text style={{ marginStart: 20, marginTop: 15, fontSize: 30 }}>|</Text>
-                <Image style={{ marginStart: 20, marginTop: 20, }} source={require("../../components/image/Picture.png")}></Image>
+                <Image style={{ marginStart: 20, marginTop: 20, }} source={require("../../image/Picture.png")}></Image>
                 <TouchableOpacity>
-                    <Image style={{ marginStart: 20, marginTop: 25, }} source={require("../../components/image/down.png")}></Image>
+                    <Image style={{ marginStart: 20, marginTop: 25, }} source={require("../../image/down.png")}></Image>
                 </TouchableOpacity>
             </View>
 
@@ -24,14 +24,14 @@ const ManageEmployee = ({navigation}) => {
                 <View style={{ flexDirection: 'row' }}>
                     <Text style={styles.viewTextHome}>Manage Employees</Text>
                     <TouchableOpacity>
-                        <Image style={{ backgroundColor: 'black', width: 35, height: 35, marginTop: 25, marginStart: 100, borderRadius: 5 }} source={require("../../components/image/plus.png")}></Image>
+                        <Image style={{ backgroundColor: 'black', width: 35, height: 35, marginTop: 25, marginStart: 100, borderRadius: 5 }} source={require("../../image/plus.png")}></Image>
                     </TouchableOpacity>
                 </View>
 
                 <View>
                     <View style={styles.viewBoder}>
                         <View style={styles.viewInput}>
-                            <Image style={{ width: 25, height: 25, margin:10, }} source={require("../../components/image/search.png")}></Image>
+                            <Image style={{ width: 25, height: 25, margin:10, }} source={require("../../image/search.png")}></Image>
                             <TextInput
                                 placeholder="Search Employee"
                             // value={ }
@@ -40,15 +40,15 @@ const ManageEmployee = ({navigation}) => {
                         </View>
                         <View style={styles.viewInput2}>
                             <Text style={{color:'#232323', fontSize: 14, fontWeight: '400',margin:20, }} >All Departements</Text>
-                            <Image style={{ width: 25, height: 25, marginStart:100,marginTop:15 }} source={require("../../components/image/down.png")}></Image>
+                            <Image style={{ width: 25, height: 25, marginStart:100,marginTop:15 }} source={require("../../image/down.png")}></Image>
                         </View>
                         <View style={styles.viewInput2}>
                             <Text style={{color:'#232323', fontSize: 14, fontWeight: '400',margin:20, }} >All Departements</Text>
-                            <Image style={{ width: 25, height: 25, marginStart:100,marginTop:15 }} source={require("../../components/image/down.png")}></Image>
+                            <Image style={{ width: 25, height: 25, marginStart:100,marginTop:15 }} source={require("../../image/down.png")}></Image>
                         </View>
                         <View style={styles.viewInput2}>
                             <Text style={{color:'#232323', fontSize: 14, fontWeight: '400',margin:20, }} >All Departements</Text>
-                            <Image style={{ width: 25, height: 25, marginStart:100,marginTop:15 }} source={require("../../components/image/down.png")}></Image>
+                            <Image style={{ width: 25, height: 25, marginStart:100,marginTop:15 }} source={require("../../image/down.png")}></Image>
                         </View>
 
                     </View>

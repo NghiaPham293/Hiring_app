@@ -14,7 +14,7 @@ const ChangePass = () => {
                 <TouchableOpacity onPress={() =>
                     navigation.goBack()}
                     style={{ marginStart: 20, marginTop: 20, }}>
-                    <Image style={{ width: 34, height: 34, }} source={require("../../components/image/arrowleft.png")}></Image>
+                    <Image style={{ width: 34, height: 34, }} source={require("../../image/arrowleft.png")}></Image>
                 </TouchableOpacity>
             </View>
             <View style={styles.viewBody}>

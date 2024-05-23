@@ -7,22 +7,22 @@ const Profile = () => {
             <ScrollView >
                 <View style={styles.viewHeader}>
                     <TouchableOpacity>
-                        <Image style={{ marginStart: 20, marginTop: 25, }} source={require("../../components/image/menu.png")}></Image>
+                        <Image style={{ marginStart: 20, marginTop: 25, }} source={require("../../image/menu.png")}></Image>
                     </TouchableOpacity>
                     <TouchableOpacity>
-                        <Image style={{ marginStart: 200, marginTop: 25, }} source={require("../../components/image/bell.png")}></Image>
+                        <Image style={{ marginStart: 200, marginTop: 25, }} source={require("../../image/bell.png")}></Image>
                     </TouchableOpacity>
                     <Text style={{ marginStart: 20, marginTop: 15, fontSize: 30 }}>|</Text>
-                    <Image style={{ marginStart: 20, marginTop: 20, }} source={require("../../components/image/Picture.png")}></Image>
+                    <Image style={{ marginStart: 20, marginTop: 20, }} source={require("../../image/Picture.png")}></Image>
                     <TouchableOpacity>
-                        <Image style={{ marginStart: 20, marginTop: 25, }} source={require("../../components/image/down.png")}></Image>
+                        <Image style={{ marginStart: 20, marginTop: 25, }} source={require("../../image/down.png")}></Image>
                     </TouchableOpacity>
                 </View>
 
                 <View style={styles.viewBodyContainer}>
                     <Text style={styles.viewTextHome}>Profile</Text>
                     <View style={styles.viewBoder}>
-                        <Image style={{ marginStart: 20, marginTop: 20, alignSelf: 'center', width: 80, height: 80 }} source={require("../../components/image/Picture.png")}></Image>
+                        <Image style={{ marginStart: 20, marginTop: 20, alignSelf: 'center', width: 80, height: 80 }} source={require("../../image/Picture.png")}></Image>
                         <View style={{ alignItems: 'center', marginStart: 20, marginTop: 10 }}>
                             <Text style={{ fontSize: 18, fontWeight: "600", color: "#232323" }}>Jonh Doe</Text>
                             <Text style={{ fontSize: 16, fontWeight: "400", color: "#232323" }}>IT Helpdesk</Text>
@@ -30,11 +30,11 @@ const Profile = () => {
                         <View style={{ width: "80%", borderWidth: 1, borderColor: "#D9D9D9", alignSelf: 'center', marginTop: 80 }}></View>
                         <View>
                             <View style={{ flexDirection: 'row', marginStart: 20, marginTop: 30 }}>
-                                <Image source={require("../../components/image/at.png")}></Image>
+                                <Image source={require("../../image/at.png")}></Image>
                                 <Text style={{ marginStart: 10, fontSize: 16, fontWeight: '400', color: '#232323' }}>abc@email.com</Text>
                             </View>
                             <View style={{ flexDirection: 'row', marginStart: 20, marginTop: 10 }}>
-                                <Image source={require("../../components/image/phone.png")}></Image>
+                                <Image source={require("../../image/phone.png")}></Image>
                                 <Text style={{ marginStart: 10, fontSize: 16, fontWeight: '400', color: '#232323' }}>090909009</Text>
                             </View>
                         </View>
@@ -53,7 +53,7 @@ const Profile = () => {
 
                     <View style={styles.viewBoder2}>
                         <View style={{ flexDirection: 'row' }}>
-                            <Image style={{ backgroundColor: "#7AAD4B", width: 30, height: 30, borderRadius: 15, margin: 20 }} source={require("../../components/image/user.png")}></Image>
+                            <Image style={{ backgroundColor: "#7AAD4B", width: 30, height: 30, borderRadius: 15, margin: 20 }} source={require("../../image/user.png")}></Image>
                             <Text style={{ fontSize: 16, fontWeight: "600", color: "#232323", marginTop: 20 }}>Personal Information</Text>
                             <TouchableOpacity>
                                 <Text style={{ color: "#7AAD4B", fontSize: 15, fontWeight: "600", marginTop: 20, marginStart: 80 }}>Edit</Text>

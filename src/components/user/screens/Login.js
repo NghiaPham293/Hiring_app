@@ -1,4 +1,4 @@
-import { Button, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import React, { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
@@ -38,7 +38,7 @@ const Login = () => {
                     <View style={styles.viewTextInputPass}>
                         <View>
                             <TouchableOpacity onPress={togglePasswordVisibility}>
-                                <Image style={{ width: 25, height: 25, marginStart: 280, marginTop: 20 }} source={require("../../components/image/eye.png")}></Image>
+                                <Image style={{ width: 25, height: 25, marginStart: 280, marginTop: 20 }} source={require("../../image/eye.png")}></Image>
                             </TouchableOpacity>
                         </View>
                         <TextInput
