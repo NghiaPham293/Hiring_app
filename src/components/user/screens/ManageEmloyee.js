@@ -6,9 +6,8 @@ const ManageEmployee = ({navigation}) => {
     return (
         <ScrollView >
             <View style={styles.viewHeader}>
-                <TouchableOpacity onPress={()=>
-                    navigation.goBack()}>
-                    <Image style={{ marginStart: 20, marginTop: 25, }} source={require("../../image/menu.png")}></Image>
+            <TouchableOpacity onPress={() => navigation.openDrawer()}>
+                    <Image style={{ marginStart: 20, marginTop: 25 }} source={require("../../image/menu.png")} />
                 </TouchableOpacity>
                 <TouchableOpacity>
                     <Image style={{ marginStart: 200, marginTop: 25, }} source={require("../../image/bell.png")}></Image>
@@ -22,7 +21,7 @@ const ManageEmployee = ({navigation}) => {
 
             <View style={styles.viewBodyContainer}>
                 <View style={{ flexDirection: 'row' }}>
-                    <Text style={styles.viewTextHome}>Manage Employees</Text>
+                    <Text style={styles.viewTextHome}>Quản lí nhân viên</Text>
                     <TouchableOpacity>
                         <Image style={{ backgroundColor: 'black', width: 35, height: 35, marginTop: 25, marginStart: 100, borderRadius: 5 }} source={require("../../image/plus.png")}></Image>
                     </TouchableOpacity>

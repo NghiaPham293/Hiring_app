@@ -1,31 +1,99 @@
-import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View, } from 'react-native';
-import React, { useState } from 'react';
-import { useNavigation } from '@react-navigation/native';
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View, Alert, Modal } from 'react-native';
+import React, { useState, useCallback } from 'react';
+// import { useNavigation } from '@react-navigation/native';
+import { ContextMenuView } from 'react-native-context-menu-view';
+import { useFocusEffect } from '@react-navigation/native';
 
+const Home = ({ navigation }) => {
 
-const Home = ({navigation}) => {
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
+    const toggleModal = () => {
+        setIsModalVisible(!isModalVisible);
+    };
+
+    useFocusEffect(
+        useCallback(() => {
+            // Đóng Modal mỗi khi màn hình được focus lại
+            setIsModalVisible(false);
+        }, [])
+    );
+
+    const handleLogout = () => {
+        Alert.alert(
+            'Xác nhận đăng xuất',
+            'Bạn có chắc chắn muốn đăng xuất?',
+            [
+                {
+                    text: 'Hủy',
+                    style: 'cancel',
+                },
+                {
+                    text: 'Đồng ý',
+                    onPress: () => {
+                        // Thực hiện hành động đăng xuất ở đây 
+                        navigation.navigate('Login');
+                    },
+                },
+            ],
+            { cancelable: false }
+        );
+    };
+
 
     return (
         <ScrollView >
             <View style={styles.viewHeader}>
-                {/* <TouchableOpacity>
-                    <Image style={{ marginStart: 20, marginTop: 25, }} source={require("../../image/menu.png")}></Image>
-                </TouchableOpacity> */}
+                <TouchableOpacity onPress={() => navigation.openDrawer()}>
+                    <Image style={{ marginStart: 20, marginTop: 25 }} source={require("../../image/menu.png")} />
+                </TouchableOpacity>
                 <TouchableOpacity>
                     <Image style={{ marginStart: 200, marginTop: 25, }} source={require("../../image/bell.png")}></Image>
                 </TouchableOpacity>
                 <Text style={{ marginStart: 20, marginTop: 15, fontSize: 30 }}>|</Text>
-                <Image style={{ marginStart: 20, marginTop: 20, }} source={require("../../image/Picture.png")}></Image>
-                <TouchableOpacity>
-                    <Image style={{ marginStart: 20, marginTop: 25, }} source={require("../../image/down.png")}></Image>
-                </TouchableOpacity>
+                <View style={styles.container}>
+                    <TouchableOpacity onPress={toggleModal} style={{ flexDirection: 'row' }}>
+                        <Image style={{ marginStart: 20, marginTop: 20, }} source={require("../../image/Picture.png")}></Image>
+                        <Image style={{ marginStart: 20, marginTop: 25, }} source={require("../../image/down.png")}></Image>
+                    </TouchableOpacity>
+                    <Modal
+                        animationType="slide"
+                        transparent={true}
+                        visible={isModalVisible}
+                        onRequestClose={() => {
+                            setIsModalVisible(false);
+                        }}
+                    >
+                        <TouchableOpacity
+                            style={styles.modalContainer}
+                            activeOpacity={1}
+                            onPressOut={() => setIsModalVisible(false)}
+                        >
+                            <View style={styles.modalContent}>
+                                <TouchableOpacity onPress={() =>
+                                    navigation.navigate('Profile')}>
+                                    <Text style={{ fontSize: 20 }}>Trang cá nhân</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() =>
+                                    navigation.navigate('ChangePass')}>
+                                    <Text style={{ fontSize: 20, marginTop: 10 }}>Đổi mật khẩu</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={handleLogout}>
+                                    <Text style={{ fontSize: 20, marginTop: 10 }}>Đăng xuất</Text>
+                                </TouchableOpacity>
+                            </View>
+
+                        </TouchableOpacity>
+                    </Modal>
+                </View>
+
             </View>
 
             <View style={styles.viewBodyContainer}>
-                <Text style={styles.viewTextHome}>HOME</Text>
+                <Text style={styles.viewTextHome}>TRANG CHỦ</Text>
                 <View style={styles.viewBody}>
                     <View style={styles.viewBoder}>
-                        <Text style={{ color: '#232323', fontSize: 18, fontWeight: '600', marginStart: 20, marginTop: 14 }}>Events</Text>
+                        <Text style={{ color: '#232323', fontSize: 18, fontWeight: '600', marginStart: 20, marginTop: 14 }}>Sự kiện</Text>
                         <View style={styles.viewDOD}>
                             <TouchableOpacity>
                                 <Image style={{ width: 16, height: 16, }} source={require("../../image/arrow.png")}></Image>
@@ -47,19 +115,18 @@ const Home = ({navigation}) => {
                         </View>
                         <View style={{ flexDirection: "row", marginTop: 30, marginStart: 40 }}>
                             <Image style={{ width: 20, height: 20, backgroundColor: "black", borderRadius: 15 }} source={require("../../image/cake.png")}></Image>
-                            <Text style={{ color: '#232323', fontSize: 15, fontWeight: '500', marginStart: 10 }}>Birthday</Text>
+                            <Text style={{ color: '#232323', fontSize: 15, fontWeight: '500', marginStart: 10 }}>Sinh nhật</Text>
                             <Image style={{ width: 20, height: 20, backgroundColor: "#7AAD4B", borderRadius: 15, marginStart: 20 }} source={require("../../image/medal.png")}></Image>
-                            <Text style={{ color: '#232323', fontSize: 15, fontWeight: '500', marginStart: 10 }}>Anniversary</Text>
+                            <Text style={{ color: '#232323', fontSize: 15, fontWeight: '500', marginStart: 10 }}>Kỉ niệm</Text>
                         </View>
                     </View>
                 </View>
                 <View >
                     <View style={styles.viewBoder2}>
                         <View style={{ flexDirection: 'row' }}>
-                            <Text style={{ color: '#232323', fontSize: 18, fontWeight: '600', marginStart: 20, marginTop: 14 }}>News</Text>
-                            <Text style={{ color: '#232323', fontSize: 18, fontWeight: '500', marginStart: 210, marginTop: 14 }}>View all</Text>
+                            <Text style={{ color: '#232323', fontSize: 18, fontWeight: '600', marginStart: 20, marginTop: 14 }}>Tin tức</Text>
+                            <Text style={{ color: '#232323', fontSize: 18, fontWeight: '500', marginStart: 210, marginTop: 14 }}>Xem hết</Text>
                         </View>
-
                         <View style={styles.viewBoderNew}>
                             <View>
                                 <Text style={{ fontSize: 14, fontWeight: '600', color: "#1C1C1C", marginStart: 14, marginTop: 14 }}>Use of Company Property Policy</Text>
@@ -99,38 +166,38 @@ const Home = ({navigation}) => {
                 <View>
                     <View style={styles.viewBoder3}>
                         <View style={{ flexDirection: 'row' }}>
-                            <Text style={{ color: '#232323', fontSize: 18, fontWeight: '600', marginStart: 20, marginTop: 14 }}>Who’s Off Today</Text>
-                            <Text style={{ color: '#232323', fontSize: 18, fontWeight: '500', marginStart: 120, marginTop: 14 }}>View all</Text>
+                            <Text style={{ color: '#232323', fontSize: 18, fontWeight: '600', marginStart: 20, marginTop: 14 }}>Người nghỉ hôm nay</Text>
+                            <Text style={{ color: '#232323', fontSize: 18, fontWeight: '500', marginStart: 120, marginTop: 14 }}>Xem hết</Text>
                         </View>
                         <View style={styles.viewItemOff}>
                             <Image style={{ width: 40, height: 40 }} source={require("../../image/Profile.png")}></Image>
-                            <View style={{marginStart: 10,}}>
-                                <Text style={{ fontSize: 15, fontWeight:'500',color:"#232323"}}>John Doe</Text>
-                                <Text style={{fontSize: 13, fontWeight:'400', color:"#6C6C6C"}}>25 Oct - 27 Oct</Text>
+                            <View style={{ marginStart: 10, }}>
+                                <Text style={{ fontSize: 15, fontWeight: '500', color: "#232323" }}>John Doe</Text>
+                                <Text style={{ fontSize: 13, fontWeight: '400', color: "#6C6C6C" }}>25 Oct - 27 Oct</Text>
                             </View>
                         </View>
                         <View style={styles.viewItemOff}>
                             <Image style={{ width: 40, height: 40 }} source={require("../../image/Profile.png")}></Image>
-                            <View style={{marginStart: 10,}}>
-                                <Text style={{ fontSize: 15, fontWeight:'500',color:"#232323"}}>John Doe</Text>
-                                <Text style={{fontSize: 13, fontWeight:'400', color:"#6C6C6C"}}>25 Oct - 27 Oct</Text>
+                            <View style={{ marginStart: 10, }}>
+                                <Text style={{ fontSize: 15, fontWeight: '500', color: "#232323" }}>John Doe</Text>
+                                <Text style={{ fontSize: 13, fontWeight: '400', color: "#6C6C6C" }}>25 Oct - 27 Oct</Text>
                             </View>
                         </View>
                         <View style={styles.viewItemOff}>
                             <Image style={{ width: 40, height: 40 }} source={require("../../image/Profile.png")}></Image>
-                            <View style={{marginStart: 10,}}>
-                                <Text style={{ fontSize: 15, fontWeight:'500',color:"#232323"}}>John Doe</Text>
-                                <Text style={{fontSize: 13, fontWeight:'400', color:"#6C6C6C"}}>25 Oct - 27 Oct</Text>
+                            <View style={{ marginStart: 10, }}>
+                                <Text style={{ fontSize: 15, fontWeight: '500', color: "#232323" }}>John Doe</Text>
+                                <Text style={{ fontSize: 13, fontWeight: '400', color: "#6C6C6C" }}>25 Oct - 27 Oct</Text>
                             </View>
                         </View>
                         <View style={styles.viewItemOff}>
                             <Image style={{ width: 40, height: 40 }} source={require("../../image/Profile.png")}></Image>
-                            <View style={{marginStart: 10,}}>
-                                <Text style={{ fontSize: 15, fontWeight:'500',color:"#232323"}}>John Doe</Text>
-                                <Text style={{fontSize: 13, fontWeight:'400', color:"#6C6C6C"}}>25 Oct - 27 Oct</Text>
+                            <View style={{ marginStart: 10, }}>
+                                <Text style={{ fontSize: 15, fontWeight: '500', color: "#232323" }}>John Doe</Text>
+                                <Text style={{ fontSize: 13, fontWeight: '400', color: "#6C6C6C" }}>25 Oct - 27 Oct</Text>
                             </View>
                         </View>
-                      
+
                     </View>
                 </View>
                 <View style={{ marginBottom: 50 }}>
@@ -140,20 +207,20 @@ const Home = ({navigation}) => {
                         </View>
                         <View style={styles.viewItemOff}>
                             <Image style={{ width: 40, height: 40 }} source={require("../../image/Profile.png")}></Image>
-                            <View style={{marginStart: 10,}}>
-                                <Text style={{ fontSize: 15, fontWeight:'500',color:"#232323"}}>John Doe</Text>
-                                <Text style={{fontSize: 14, fontWeight:'400', color:"#6C6C6C"}}>Joining on 24 Oct 2023</Text>
+                            <View style={{ marginStart: 10, }}>
+                                <Text style={{ fontSize: 15, fontWeight: '500', color: "#232323" }}>John Doe</Text>
+                                <Text style={{ fontSize: 14, fontWeight: '400', color: "#6C6C6C" }}>Joining on 24 Oct 2023</Text>
                             </View>
                         </View>
                         <View style={styles.viewItemOff}>
                             <Image style={{ width: 40, height: 40 }} source={require("../../image/Profile2.png")}></Image>
-                            <View style={{marginStart: 10,}}>
-                                <Text style={{ fontSize: 15, fontWeight:'500',color:"#232323"}}>John Doe</Text>
-                                <Text style={{fontSize: 13, fontWeight:'400', color:"#6C6C6C"}}>Joining on 24 Oct 2023</Text>
+                            <View style={{ marginStart: 10, }}>
+                                <Text style={{ fontSize: 15, fontWeight: '500', color: "#232323" }}>John Doe</Text>
+                                <Text style={{ fontSize: 13, fontWeight: '400', color: "#6C6C6C" }}>Joining on 24 Oct 2023</Text>
                             </View>
                         </View>
-                       
-                      
+
+
                     </View>
                 </View>
             </View>
@@ -166,8 +233,22 @@ const Home = ({navigation}) => {
 export default Home;
 
 const styles = StyleSheet.create({
-    viewItemOff:{
-        flexDirection:'row',
+
+
+    modalContainer: {
+        flex: 1,
+        marginTop: 80,
+        alignItems: 'flex-end',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    },
+    modalContent: {
+        backgroundColor: 'white',
+        padding: 40,
+        borderRadius: 10,
+        elevation: 5,
+    },
+    viewItemOff: {
+        flexDirection: 'row',
         marginStart: 20,
         marginTop: 20,
     },
@@ -200,7 +281,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     viewBodyContainer: {
-    
+
 
     },
     viewBoder4: {
@@ -212,7 +293,7 @@ const styles = StyleSheet.create({
         marginStart: 20,
         borderColor: '#D9D9D9',
         backgroundColor: '#FFFFFF',
-        
+
     },
     viewBoder3: {
         width: "90%",
@@ -223,7 +304,7 @@ const styles = StyleSheet.create({
         marginStart: 20,
         borderColor: '#D9D9D9',
         backgroundColor: '#FFFFFF',
-        
+
     },
     viewBoder2: {
         width: "90%",

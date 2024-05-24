@@ -1,13 +1,13 @@
-import { Button, Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, } from 'react-native';
+import {  Image, ScrollView, StyleSheet, Text, TextInput, TouchableOpacity, View, } from 'react-native';
 import React, { useState } from 'react';
 
 
-const CalendarScreen = () => {
+const Settings = ({navigation}) => {
     return (
         <ScrollView >
             <View style={styles.viewHeader}>
-                <TouchableOpacity>
-                    <Image style={{ marginStart: 20, marginTop: 25, }} source={require("../../image/menu.png")}></Image>
+            <TouchableOpacity onPress={() => navigation.openDrawer()}>
+                    <Image style={{ marginStart: 20, marginTop: 25 }} source={require("../../image/menu.png")} />
                 </TouchableOpacity>
                 <TouchableOpacity>
                     <Image style={{ marginStart: 200, marginTop: 25, }} source={require("../../image/bell.png")}></Image>
@@ -27,7 +27,7 @@ const CalendarScreen = () => {
     )
 };
 
-export default CalendarScreen;
+export default Settings;
 
 const styles = StyleSheet.create({
   

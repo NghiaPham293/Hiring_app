@@ -15,7 +15,7 @@ const Login = () => {
         <View style={{ flex: 1 }}>
             <View style={styles.viewContainer}>
                 <View>
-                    <Text style={styles.viewText}>Welcome back!</Text>
+                    <Text style={styles.viewText}>Welcome</Text>
                     <Text style={styles.viewText2}>Log in to continue manage your employee.</Text>
                 </View>
             </View>

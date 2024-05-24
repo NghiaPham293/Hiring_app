@@ -1,13 +1,13 @@
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Image } from 'react-native'
 import React from 'react'
 
-const Profile = () => {
+const Profile = ({navigation}) => {
     return (
         <View>
             <ScrollView >
                 <View style={styles.viewHeader}>
-                    <TouchableOpacity>
-                        <Image style={{ marginStart: 20, marginTop: 25, }} source={require("../../image/menu.png")}></Image>
+                    <TouchableOpacity onPress={() => navigation.openDrawer()}>
+                        <Image style={{ marginStart: 20, marginTop: 25 }} source={require("../../image/menu.png")} />
                     </TouchableOpacity>
                     <TouchableOpacity>
                         <Image style={{ marginStart: 200, marginTop: 25, }} source={require("../../image/bell.png")}></Image>
@@ -59,7 +59,7 @@ const Profile = () => {
                                 <Text style={{ color: "#7AAD4B", fontSize: 15, fontWeight: "600", marginTop: 20, marginStart: 80 }}>Edit</Text>
                             </TouchableOpacity>
                         </View>
-                        <View style={{ flexDirection: "columm",width:180, height:360 }}>
+                        <View style={{ flexDirection: "columm", width: 180, height: 360 }}>
                             <Text style={styles.viewText}>Full name</Text>
                             <Text style={styles.viewText}>Gender</Text>
                             <Text style={styles.viewText}>Date of Brith</Text>
