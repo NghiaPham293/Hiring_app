@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View, Modal } from 'react-native';
 import { Calendar } from 'react-native-calendars';
 import { useNavigation } from '@react-navigation/native';
 import SwipeButton from 'rn-swipe-button';
 import arrowRight from '../../image/arrowright.png';
+import { useFocusEffect } from '@react-navigation/native';
 
 const CalendarScreen = () => {
     const defaultStatusMessage = 'Swipe status appears here';
@@ -135,6 +136,40 @@ const CalendarScreen = () => {
         }
     }, []);
 
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
+    const toggleModal = () => {
+        setIsModalVisible(!isModalVisible);
+    };
+
+    useFocusEffect(
+        useCallback(() => {
+            // Đóng Modal mỗi khi màn hình được focus lại
+            setIsModalVisible(false);
+        }, [])
+    );
+
+    const handleLogout = () => {
+        Alert.alert(
+            'Xác nhận đăng xuất',
+            'Bạn có chắc chắn muốn đăng xuất?',
+            [
+                {
+                    text: 'Hủy',
+                    style: 'cancel',
+                },
+                {
+                    text: 'Đồng ý',
+                    onPress: () => {
+                        // Thực hiện hành động đăng xuất ở đây 
+                        navigation.navigate('Login');
+                    },
+                },
+            ],
+            { cancelable: false }
+        );
+    };
+
     return (
         <ScrollView>
             <View style={styles.viewHeader}>
@@ -145,10 +180,40 @@ const CalendarScreen = () => {
                     <Image style={{ marginStart: 200, marginTop: 25 }} source={require("../../image/bell.png")} />
                 </TouchableOpacity>
                 <Text style={{ marginStart: 20, marginTop: 15, fontSize: 30 }}>|</Text>
-                <Image style={{ marginStart: 20, marginTop: 20 }} source={require("../../image/Picture.png")} />
-                <TouchableOpacity>
-                    <Image style={{ marginStart: 20, marginTop: 25 }} source={require("../../image/down.png")} />
-                </TouchableOpacity>
+                <View style={styles.container}>
+                    <TouchableOpacity onPress={toggleModal} style={{ flexDirection: 'row' }}>
+                        <Image style={{ marginStart: 20, marginTop: 20, }} source={require("../../image/Picture.png")}></Image>
+                        <Image style={{ marginStart: 20, marginTop: 25, }} source={require("../../image/down.png")}></Image>
+                    </TouchableOpacity>
+                    <Modal
+                        animationType="slide"
+                        transparent={true}
+                        visible={isModalVisible}
+                        onRequestClose={() => {
+                            setIsModalVisible(false);
+                        }}
+                    >
+                        <TouchableOpacity
+                            style={styles.modalContainer}
+                            activeOpacity={1}
+                            onPressOut={() => setIsModalVisible(false)}
+                        >
+                            <View style={styles.modalContent}>
+                                <TouchableOpacity onPress={() =>
+                                    navigation.navigate('Profile')}>
+                                    <Text style={{ fontSize: 20 }}>Trang cá nhân</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() =>
+                                    navigation.navigate('ChangePass')}>
+                                    <Text style={{ fontSize: 20, marginTop: 10 }}>Đổi mật khẩu</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={handleLogout}>
+                                    <Text style={{ fontSize: 20, marginTop: 10 }}>Đăng xuất</Text>
+                                </TouchableOpacity>
+                            </View>
+                        </TouchableOpacity>
+                    </Modal>
+                </View>
             </View>
             <View style={styles.viewBodyContainer}>
                 <Text style={styles.viewTextHome}>CHẤM CÔNG</Text>
@@ -180,8 +245,6 @@ const CalendarScreen = () => {
                 <Text style={styles.timestampText}>
                     {checkOutTime ? `Checked out at: ${checkOutTime}` : ''}
                 </Text>
-
-
             </View>
         </ScrollView>
     );
@@ -190,6 +253,19 @@ const CalendarScreen = () => {
 export default CalendarScreen;
 
 const styles = StyleSheet.create({
+
+    modalContainer: {
+        flex: 1,
+        marginTop: 80,
+        alignItems: 'flex-end',
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    },
+    modalContent: {
+        backgroundColor: 'white',
+        padding: 40,
+        borderRadius: 10,
+        elevation: 5,
+    },
     timestampText: {
         fontSize: 16,
         color: "black",
@@ -204,7 +280,7 @@ const styles = StyleSheet.create({
     viewCalendar: {
         marginTop: 30,
     },
-  
+
     missCheckInButton: {
         marginTop: 20,
         width: 330,

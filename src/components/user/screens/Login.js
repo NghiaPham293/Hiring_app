@@ -27,8 +27,9 @@ const Login = () => {
                     <TextInput
                         value={email}
                         onChangeText={(text) => setEmail(text)}
-                        placeholder="   Email"
+                        placeholder=""
                         style={styles.viewTextInputEmail}
+                        paddingStart={20}
                     />
                 </View>
                 <View style={styles.viewEmail}>
@@ -45,17 +46,12 @@ const Login = () => {
                             secureTextEntry={!showPassword}
                             value={password}
                             onChangeText={(text) => setPassword(text)}
-                            placeholder="   Password"
+                            placeholder=""
                             style={{ marginTop: -40, }}
+                            paddingStart={20}
                         />
                     </View>
                 </View>
-                <TouchableOpacity onPress={() =>
-                    navigation.navigate('ChangePass')}
-                    style={styles.viewForgotPass}>
-                    <Text style={{ color: '#005987' }}>Quên mật khẩu</Text>
-                </TouchableOpacity>
-
                 <TouchableOpacity onPress={() =>
                     navigation.navigate('Calendar')}
                     style={styles.viewLogin}>

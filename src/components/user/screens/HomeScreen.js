@@ -123,9 +123,9 @@ const Home = ({ navigation }) => {
                 </View>
                 <View >
                     <View style={styles.viewBoder2}>
-                        <View style={{ flexDirection: 'row' }}>
+                        <View style={{ flexDirection: 'row',justifyContent: 'space-between' }}>
                             <Text style={{ color: '#232323', fontSize: 18, fontWeight: '600', marginStart: 20, marginTop: 14 }}>Tin tức</Text>
-                            <Text style={{ color: '#232323', fontSize: 18, fontWeight: '500', marginStart: 210, marginTop: 14 }}>Xem hết</Text>
+                            <Text style={{ color: '#232323', fontSize: 18, fontWeight: '500',  marginEnd: 20, marginTop: 14 }}>Xem hết</Text>
                         </View>
                         <View style={styles.viewBoderNew}>
                             <View>
@@ -165,9 +165,13 @@ const Home = ({ navigation }) => {
                 </View>
                 <View>
                     <View style={styles.viewBoder3}>
-                        <View style={{ flexDirection: 'row' }}>
-                            <Text style={{ color: '#232323', fontSize: 18, fontWeight: '600', marginStart: 20, marginTop: 14 }}>Người nghỉ hôm nay</Text>
-                            <Text style={{ color: '#232323', fontSize: 18, fontWeight: '500', marginStart: 120, marginTop: 14 }}>Xem hết</Text>
+                        <View style={{ flexDirection: 'row', justifyContent: 'space-between'}}>
+                            <View>
+                                <Text style={{ color: '#232323', fontSize: 18, fontWeight: '600', marginStart: 20, marginTop: 14 }}>Người nghỉ hôm nay</Text>
+                            </View>
+                            <View>
+                                <Text style={{ color: '#232323', fontSize: 18, fontWeight: '500', marginTop: 14, marginEnd: 20 }}>Xem hết</Text>
+                            </View>
                         </View>
                         <View style={styles.viewItemOff}>
                             <Image style={{ width: 40, height: 40 }} source={require("../../image/Profile.png")}></Image>

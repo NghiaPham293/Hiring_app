@@ -1,13 +1,51 @@
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Image } from 'react-native'
-import React from 'react'
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Image, Modal } from 'react-native'
+import React from 'react';
+import { useState, useCallback } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 
-const Profile = ({navigation}) => {
+const Profile = ({ navigation }) => {
+    const [isModalVisible, setIsModalVisible] = useState(false);
+
+    const toggleModal = () => {
+        setIsModalVisible(!isModalVisible);
+    };
+
+    useFocusEffect(
+        useCallback(() => {
+            // Đóng Modal mỗi khi màn hình được focus lại
+            setIsModalVisible(false);
+        }, [])
+    );
+
+    const handleLogout = () => {
+        Alert.alert(
+            'Xác nhận đăng xuất',
+            'Bạn có chắc chắn muốn đăng xuất?',
+            [
+                {
+                    text: 'Hủy',
+                    style: 'cancel',
+                },
+                {
+                    text: 'Đồng ý',
+                    onPress: () => {
+                        // Thực hiện hành động đăng xuất ở đây 
+                        navigation.navigate('Login');
+                    },
+                },
+            ],
+            { cancelable: false }
+        );
+    };
+
     return (
         <View>
             <ScrollView >
                 <View style={styles.viewHeader}>
-                    <TouchableOpacity onPress={() => navigation.openDrawer()}>
-                        <Image style={{ marginStart: 20, marginTop: 25 }} source={require("../../image/menu.png")} />
+                    <TouchableOpacity onPress={() =>
+                        navigation.goBack()}
+                        style={{ marginStart: 20, marginTop: 20, }}>
+                        <Image style={{ width: 34, height: 34, }} source={require("../../image/arrowleft.png")}></Image>
                     </TouchableOpacity>
                     <TouchableOpacity>
                         <Image style={{ marginStart: 200, marginTop: 25, }} source={require("../../image/bell.png")}></Image>
@@ -17,6 +55,35 @@ const Profile = ({navigation}) => {
                     <TouchableOpacity>
                         <Image style={{ marginStart: 20, marginTop: 25, }} source={require("../../image/down.png")}></Image>
                     </TouchableOpacity>
+                    <Modal
+                        animationType="slide"
+                        transparent={true}
+                        visible={isModalVisible}
+                        onRequestClose={() => {
+                            setIsModalVisible(false);
+                        }}
+                    >
+                        <TouchableOpacity
+                            style={styles.modalContainer}
+                            activeOpacity={1}
+                            onPressOut={() => setIsModalVisible(false)}
+                        >
+                            <View style={styles.modalContent}>
+                                <TouchableOpacity onPress={() =>
+                                    navigation.navigate('Profile')}>
+                                    <Text style={{ fontSize: 20 }}>Trang cá nhân</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={() =>
+                                    navigation.navigate('ChangePass')}>
+                                    <Text style={{ fontSize: 20, marginTop: 10 }}>Đổi mật khẩu</Text>
+                                </TouchableOpacity>
+                                <TouchableOpacity onPress={handleLogout}>
+                                    <Text style={{ fontSize: 20, marginTop: 10 }}>Đăng xuất</Text>
+                                </TouchableOpacity>
+                            </View>
+
+                        </TouchableOpacity>
+                    </Modal>
                 </View>
 
                 <View style={styles.viewBodyContainer}>
