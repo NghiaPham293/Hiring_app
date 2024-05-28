@@ -8,6 +8,7 @@ import Profile from '../screens/Profile';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Settings from '../screens/Settings';
+import History from '../screens/History';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -31,9 +32,8 @@ const DrawerNavigator = () => {
         >
             <Drawer.Screen name="Trang chủ" component={Home} />
             <Drawer.Screen name="Chấm công" component={CalendarScreen} />
-            <Drawer.Screen name="Lịch sử chấm công" component={Settings} />
+            <Drawer.Screen name="Lịch sử chấm công" component={History} />
             <Drawer.Screen name="Quản lí nhân viên" component={ManageEmployee} />
-            <Drawer.Screen name="Thông tin cá nhân" component={Profile} />
             <Drawer.Screen name="Xin nghỉ phép" component={Settings} />
             <Drawer.Screen name="Book phòng họp" component={Settings} />
 
@@ -51,6 +51,8 @@ const AppStack = () => {
             <Stack.Screen name="ChangePass" component={ChangePass} />
             <Stack.Screen name="Profile" component={Profile} />
             <Stack.Screen name="Settings" component={Settings} />
+            <Stack.Screen name="History" component={History} />
+
         </Stack.Navigator>
     )
 }

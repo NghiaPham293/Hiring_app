@@ -27,7 +27,7 @@ const Login = () => {
                     <TextInput
                         value={email}
                         onChangeText={(text) => setEmail(text)}
-                        placeholder=""
+                        placeholder="Nhập email"
                         style={styles.viewTextInputEmail}
                         paddingStart={20}
                     />
@@ -37,19 +37,17 @@ const Login = () => {
                 </View>
                 <View style={styles.viewTextInputPassword}>
                     <View style={styles.viewTextInputPass}>
-                        <View>
-                            <TouchableOpacity onPress={togglePasswordVisibility}>
-                                <Image style={{ width: 25, height: 25, marginStart: 280, marginTop: 20 }} source={require("../../image/eye.png")}></Image>
-                            </TouchableOpacity>
-                        </View>
                         <TextInput
                             secureTextEntry={!showPassword}
                             value={password}
                             onChangeText={(text) => setPassword(text)}
-                            placeholder=""
-                            style={{ marginTop: -40, }}
+                            placeholder="Nhập password"
                             paddingStart={20}
+                            paddingTop={15}
                         />
+                        <TouchableOpacity onPress={togglePasswordVisibility} style={styles.eyeButton}>
+                            <Image style={styles.eyeIcon} source={require("../../image/eye.png")} />
+                        </TouchableOpacity>
                     </View>
                 </View>
                 <TouchableOpacity onPress={() =>
@@ -102,7 +100,10 @@ const styles = StyleSheet.create({
         marginTop: 8,
         borderRadius: 8,
         borderWidth: 1,
+        paddingLeft: 20,
+        paddingRight: 50
     },
+   
     viewTextEmail: {
         fontSize: 13,
         fontWeight: '400',
@@ -123,6 +124,18 @@ const styles = StyleSheet.create({
         color: '#232323',
         alignSelf: 'center',
         marginTop: 12,
+    },
+    
+    eyeButton: {
+        position: 'absolute',
+        right: 15,
+        top: '50%',
+        transform: [{ translateY: -12.5 }],
+        zIndex: 1,
+    },
+    eyeIcon: {
+        width: 25,
+        height: 25,
     },
 
 
